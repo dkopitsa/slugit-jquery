@@ -41,13 +41,13 @@ jQuery.fn.slugIt = function(options) {
         
         var slug = new String();
         for (var i = 0; i < text.length; i++) {
-            if ( chars[text.charAt(i)] ) { slug += chars[text.charAt(i)] }
+            if ( text.charAt(i) in chars ) { slug += chars[text.charAt(i)] }
             else                         { slug += text.charAt(i) }
         }
         
         slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
         slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        slug = slug.replace(/[-\s]+/g, options.space);   // convert spaces
+        slug = slug.replace(/[-\s]+/g, opts.space);   // convert spaces
         slug = slug.replace(/-$/, '');         // remove trailing separator
         slug = slug.toLowerCase();
         
